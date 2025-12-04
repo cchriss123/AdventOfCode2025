@@ -33,7 +33,10 @@ public class Day2 {
         for (List<String> range : ranges) {
             for(String numStr : range) {
 
-                if (!isValid(numStr)) {
+//                if (!isValidPart1(numStr)) {
+//                    totalNumbers += Long.parseLong(numStr);
+//                }
+                if (!isValidPart2(numStr)) {
                     totalNumbers += Long.parseLong(numStr);
                 }
             }
@@ -42,7 +45,7 @@ public class Day2 {
 
     }
 
-    private static boolean isValid(String numStr) {
+    private static boolean isValidPart1(String numStr) {
         if (numStr.length() % 2 != 0) {
             return true;
         }
@@ -54,6 +57,35 @@ public class Day2 {
         return !firstHalf.equals(secondHalf);
 
     }
+
+    private static boolean isValidPart2(String s) {
+        int n = s.length();
+
+        // Try all possible pattern lengths
+        for (int k = 1; k <= n / 2; k++) {
+            if (n % k != 0) continue; // must divide evenly
+
+            int repeats = n / k;
+            if (repeats < 2) continue; // need at least 2 copies
+
+            String pattern = s.substring(0, k);
+            boolean allMatch = true;
+
+            for (int pos = k; pos < n; pos += k) {
+                if (!s.startsWith(pattern, pos)) {
+                    allMatch = false;
+                    break;
+                }
+            }
+
+            if (allMatch) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 
 
     private static String getTestInput() {
