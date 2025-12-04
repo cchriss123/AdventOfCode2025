@@ -6,8 +6,9 @@ import java.util.List;
 public class Day1 {
     public static void main(String[] args) throws IOException {
 
-//        List<String> input = Files.readAllLines(Path.of("src/input01.txt"));
-         List<String> input = getTestInput();
+
+        List<String> input = Files.readAllLines(Path.of("src/input01.txt"));
+//         List<String> input = getTestInput();
         System.out.println("Day 1 Password: " + partOne(input));
         System.out.println("Day 2 Password: " + partTwo(input));
         
